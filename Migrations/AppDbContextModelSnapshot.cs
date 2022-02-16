@@ -19,6 +19,36 @@ namespace WinForms_Auth.Migrations
                 .HasAnnotation("ProductVersion", "5.0.14")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("BookDiscount", b =>
+                {
+                    b.Property<Guid>("BooksId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("DiscountsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("BooksId", "DiscountsId");
+
+                    b.HasIndex("DiscountsId");
+
+                    b.ToTable("BookDiscount");
+                });
+
+            modelBuilder.Entity("BookGenre", b =>
+                {
+                    b.Property<Guid>("BooksId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("GenresId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("BooksId", "GenresId");
+
+                    b.HasIndex("GenresId");
+
+                    b.ToTable("BookGenre");
+                });
+
             modelBuilder.Entity("RoleUser", b =>
                 {
                     b.Property<Guid>("RolesId")
@@ -32,6 +62,72 @@ namespace WinForms_Auth.Migrations
                     b.HasIndex("UsersId");
 
                     b.ToTable("z_UserRoles");
+                });
+
+            modelBuilder.Entity("WinForms_Auth.Data.Entities.Book", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("Avatar")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("CountPage")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameAuthor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NamePublisher")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("TomNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("WinForms_Auth.Data.Entities.Discount", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Finish")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Percent")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Discounts");
+                });
+
+            modelBuilder.Entity("WinForms_Auth.Data.Entities.Genre", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("WinForms_Auth.Data.Entities.Role", b =>
@@ -50,12 +146,12 @@ namespace WinForms_Auth.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c4b243a4-f2cb-4670-840c-12869763093a"),
+                            Id = new Guid("0d8137b4-06a0-4170-b818-c1c943437dec"),
                             Name = "Admin"
                         },
                         new
                         {
-                            Id = new Guid("b8871fd3-b5f8-46fb-b6a2-0cec59e6b691"),
+                            Id = new Guid("2ff7e9b4-01a9-4de2-b57b-918ae72a80b6"),
                             Name = "Guest"
                         });
                 });
@@ -81,7 +177,7 @@ namespace WinForms_Auth.Migrations
                     b.Property<Guid>("RoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasDefaultValue(new Guid("b8871fd3-b5f8-46fb-b6a2-0cec59e6b691"));
+                        .HasDefaultValue(new Guid("2ff7e9b4-01a9-4de2-b57b-918ae72a80b6"));
 
                     b.HasKey("Id");
 
@@ -92,11 +188,41 @@ namespace WinForms_Auth.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("04922aab-77e4-4fab-ad4d-65d5b3ff9d63"),
+                            Id = new Guid("4df1af80-1d67-40cc-a9cc-93b3eca25054"),
                             Email = "admin@admin.com",
                             Name = "Admin",
-                            RoleId = new Guid("c4b243a4-f2cb-4670-840c-12869763093a")
+                            RoleId = new Guid("0d8137b4-06a0-4170-b818-c1c943437dec")
                         });
+                });
+
+            modelBuilder.Entity("BookDiscount", b =>
+                {
+                    b.HasOne("WinForms_Auth.Data.Entities.Book", null)
+                        .WithMany()
+                        .HasForeignKey("BooksId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WinForms_Auth.Data.Entities.Discount", null)
+                        .WithMany()
+                        .HasForeignKey("DiscountsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BookGenre", b =>
+                {
+                    b.HasOne("WinForms_Auth.Data.Entities.Book", null)
+                        .WithMany()
+                        .HasForeignKey("BooksId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WinForms_Auth.Data.Entities.Genre", null)
+                        .WithMany()
+                        .HasForeignKey("GenresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("RoleUser", b =>

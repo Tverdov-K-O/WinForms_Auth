@@ -13,8 +13,11 @@ namespace WinForms_Auth.Data
 
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
 
-        private string sqlConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\tverd\source\repos\WinForms_Auth\DBFiles\Database_Auth.mdf;Integrated Security=True";
+        private string sqlConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\37182\Source\Repos\WinForms_Auth2\DBFiles\Database_Auth.mdf;Integrated Security=True";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

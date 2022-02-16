@@ -12,7 +12,6 @@ namespace WinForms_Auth.Helpers
     {
         FormRegister frmRegister = new FormRegister();
         FormLogin frmLogin = new FormLogin();
-
         public bool Login()
         {
             do
@@ -36,8 +35,6 @@ namespace WinForms_Auth.Helpers
         }
         private void SingIn()
         {
-            
-            frmRegister.ShowDialog();
             switch (frmRegister.ShowDialog())
             {
                 case System.Windows.Forms.DialogResult.OK:
@@ -72,6 +69,8 @@ namespace WinForms_Auth.Helpers
             {
                 Data.Entities.User newUser = new Data.Entities.User
                 {
+                    Id = Guid.NewGuid(),
+                    Name = frmRegister.textBox1.Text,
                     Email = frmRegister.textBoxEmail.Text,
                     Password = frmRegister.textBoxPassword.Text
                 };
@@ -81,7 +80,6 @@ namespace WinForms_Auth.Helpers
                 Program._db.Entry(newUser).Collection("Roles");
                 Program.Auth.currentUser = newUser;
                 Program.Auth.isLogin = true;
-
             }catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());

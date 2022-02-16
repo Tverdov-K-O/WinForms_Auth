@@ -58,5 +58,10 @@ namespace WinForms_Auth.Views
                 (sender as TextBox).BackColor = Color.Green;
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
