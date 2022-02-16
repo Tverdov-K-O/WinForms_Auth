@@ -29,8 +29,10 @@ namespace WinForms_Auth.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.profileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.моиФаворитыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокНовинокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокПопАвторовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокПопЖанровToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,14 +62,18 @@ namespace WinForms_Auth.Views
             this.Lable = new System.Windows.Forms.Label();
             this.listBoxBookSearch = new System.Windows.Forms.ListBox();
             this.listBoxProducts = new System.Windows.Forms.ListBox();
+            this.contextMenuStripBooks = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.добавитьВФаворитыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelSearch = new System.Windows.Forms.Label();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
+            this.всеКнигиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.panelBook.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBook)).BeginInit();
+            this.contextMenuStripBooks.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -75,6 +81,8 @@ namespace WinForms_Auth.Views
             this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.profileToolStripMenuItem1,
+            this.всеКнигиToolStripMenuItem,
+            this.моиФаворитыToolStripMenuItem,
             this.списокНовинокToolStripMenuItem,
             this.списокПопАвторовToolStripMenuItem,
             this.списокПопЖанровToolStripMenuItem,
@@ -91,6 +99,13 @@ namespace WinForms_Auth.Views
             this.profileToolStripMenuItem1.Size = new System.Drawing.Size(71, 20);
             this.profileToolStripMenuItem1.Text = "Профиль";
             this.profileToolStripMenuItem1.Click += new System.EventHandler(this.profileToolStripMenuItem1_Click);
+            // 
+            // моиФаворитыToolStripMenuItem
+            // 
+            this.моиФаворитыToolStripMenuItem.Name = "моиФаворитыToolStripMenuItem";
+            this.моиФаворитыToolStripMenuItem.Size = new System.Drawing.Size(103, 20);
+            this.моиФаворитыToolStripMenuItem.Text = "Мои Фавориты";
+            this.моиФаворитыToolStripMenuItem.Click += new System.EventHandler(this.моиФаворитыToolStripMenuItem_Click);
             // 
             // списокНовинокToolStripMenuItem
             // 
@@ -115,6 +130,7 @@ namespace WinForms_Auth.Views
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
             this.adminToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.adminToolStripMenuItem.Text = "Admin";
+            this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
             // 
             // toolStripContainer1
             // 
@@ -239,7 +255,7 @@ namespace WinForms_Auth.Views
             this.labelTom.AutoSize = true;
             this.labelTom.Location = new System.Drawing.Point(32, 45);
             this.labelTom.Name = "labelTom";
-            this.labelTom.Size = new System.Drawing.Size(33, 15);
+            this.labelTom.Size = new System.Drawing.Size(32, 15);
             this.labelTom.TabIndex = 10;
             this.labelTom.Text = "Том:";
             // 
@@ -321,7 +337,7 @@ namespace WinForms_Auth.Views
             // 
             this.labelNameBook.AutoSize = true;
             this.labelNameBook.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelNameBook.Location = new System.Drawing.Point(59, 15);
+            this.labelNameBook.Location = new System.Drawing.Point(13, 14);
             this.labelNameBook.Name = "labelNameBook";
             this.labelNameBook.Size = new System.Drawing.Size(73, 17);
             this.labelNameBook.TabIndex = 1;
@@ -329,6 +345,7 @@ namespace WinForms_Auth.Views
             // 
             // pictureBoxBook
             // 
+            this.pictureBoxBook.BackColor = System.Drawing.Color.BurlyWood;
             this.pictureBoxBook.Location = new System.Drawing.Point(198, 0);
             this.pictureBoxBook.Name = "pictureBoxBook";
             this.pictureBoxBook.Size = new System.Drawing.Size(150, 150);
@@ -368,12 +385,28 @@ namespace WinForms_Auth.Views
             // listBoxProducts
             // 
             this.listBoxProducts.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.listBoxProducts.ContextMenuStrip = this.contextMenuStripBooks;
             this.listBoxProducts.FormattingEnabled = true;
             this.listBoxProducts.ItemHeight = 15;
             this.listBoxProducts.Location = new System.Drawing.Point(12, 57);
             this.listBoxProducts.Name = "listBoxProducts";
             this.listBoxProducts.Size = new System.Drawing.Size(200, 304);
             this.listBoxProducts.TabIndex = 0;
+            this.listBoxProducts.SelectedIndexChanged += new System.EventHandler(this.listBoxProducts_SelectedIndexChanged);
+            // 
+            // contextMenuStripBooks
+            // 
+            this.contextMenuStripBooks.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.добавитьВФаворитыToolStripMenuItem});
+            this.contextMenuStripBooks.Name = "contextMenuStripBooks";
+            this.contextMenuStripBooks.Size = new System.Drawing.Size(195, 26);
+            // 
+            // добавитьВФаворитыToolStripMenuItem
+            // 
+            this.добавитьВФаворитыToolStripMenuItem.Name = "добавитьВФаворитыToolStripMenuItem";
+            this.добавитьВФаворитыToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.добавитьВФаворитыToolStripMenuItem.Text = "Добавить в Фавориты";
+            this.добавитьВФаворитыToolStripMenuItem.Click += new System.EventHandler(this.добавитьВФаворитыToolStripMenuItem_Click);
             // 
             // labelSearch
             // 
@@ -392,7 +425,14 @@ namespace WinForms_Auth.Views
             this.textBoxSearch.Size = new System.Drawing.Size(136, 23);
             this.textBoxSearch.TabIndex = 8;
             // 
-            // FormBookshop
+            // всеКнигиToolStripMenuItem
+            // 
+            this.всеКнигиToolStripMenuItem.Name = "всеКнигиToolStripMenuItem";
+            this.всеКнигиToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.всеКнигиToolStripMenuItem.Text = "Все книги";
+            this.всеКнигиToolStripMenuItem.Click += new System.EventHandler(this.всеКнигиToolStripMenuItem_Click);
+            // 
+            // FormBooksShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -407,7 +447,8 @@ namespace WinForms_Auth.Views
             this.Controls.Add(this.panelBook);
             this.Controls.Add(this.toolStripContainer1);
             this.MainMenuStrip = this.menuStrip;
-            this.Name = "FormBookshop";
+            this.Name = "FormBooksShop";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormBookshop";
             this.Load += new System.EventHandler(this.FormBookshop_Load);
             this.menuStrip.ResumeLayout(false);
@@ -421,6 +462,7 @@ namespace WinForms_Auth.Views
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBook)).EndInit();
+            this.contextMenuStripBooks.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -461,5 +503,9 @@ namespace WinForms_Auth.Views
         private System.Windows.Forms.Label labelSearch;
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem моиФаворитыToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripBooks;
+        private System.Windows.Forms.ToolStripMenuItem добавитьВФаворитыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem всеКнигиToolStripMenuItem;
     }
 }

@@ -15,6 +15,7 @@ namespace WinForms_Auth.Data.Entities
         public Guid RoleId { get; set; }
         public virtual  Role Role { get; set; }
         public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
         public byte[] Avatar { get; set; }
     }
 }

@@ -15,9 +15,15 @@ namespace WinForms_Auth.Data.Entities
         public double Price { get; set; }
         public int CountPage { get; set; }
         public int TomNumber { get; set; }
+        public DateTime CreatedAt { get; set; }
         public virtual ICollection<Genre> Genres { get; set; }
         public virtual ICollection<Discount> Discounts { get; set; }
+        public virtual ICollection<User> Users { get; set; }
         public byte[] Avatar { get; set; }
 
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

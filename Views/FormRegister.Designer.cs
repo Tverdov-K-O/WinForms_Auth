@@ -168,6 +168,7 @@ namespace WinForms_Auth.Views
             this.Controls.Add(this.labelRegistration);
             this.Controls.Add(this.textBox1);
             this.Name = "FormRegister";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormRegister";
             this.ResumeLayout(false);
             this.PerformLayout();

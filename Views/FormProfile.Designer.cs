@@ -42,7 +42,7 @@ namespace WinForms_Auth.Views
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(632, 415);
+            this.btnCancel.Location = new System.Drawing.Point(233, 218);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 0;
@@ -52,7 +52,7 @@ namespace WinForms_Auth.Views
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(713, 415);
+            this.btnSave.Location = new System.Drawing.Point(314, 218);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 1;
@@ -62,7 +62,7 @@ namespace WinForms_Auth.Views
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(67, 36);
+            this.textBoxName.Location = new System.Drawing.Point(272, 12);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(100, 23);
             this.textBoxName.TabIndex = 2;
@@ -71,7 +71,7 @@ namespace WinForms_Auth.Views
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(22, 39);
+            this.labelName.Location = new System.Drawing.Point(227, 15);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(42, 15);
             this.labelName.TabIndex = 3;
@@ -79,7 +79,7 @@ namespace WinForms_Auth.Views
             // 
             // textBoxRole
             // 
-            this.textBoxRole.Location = new System.Drawing.Point(67, 66);
+            this.textBoxRole.Location = new System.Drawing.Point(272, 42);
             this.textBoxRole.Name = "textBoxRole";
             this.textBoxRole.Size = new System.Drawing.Size(100, 23);
             this.textBoxRole.TabIndex = 4;
@@ -87,7 +87,7 @@ namespace WinForms_Auth.Views
             // labelRole
             // 
             this.labelRole.AutoSize = true;
-            this.labelRole.Location = new System.Drawing.Point(28, 69);
+            this.labelRole.Location = new System.Drawing.Point(233, 45);
             this.labelRole.Name = "labelRole";
             this.labelRole.Size = new System.Drawing.Size(33, 15);
             this.labelRole.TabIndex = 5;
@@ -96,7 +96,7 @@ namespace WinForms_Auth.Views
             // pictureBoxAvatar
             // 
             this.pictureBoxAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBoxAvatar.Location = new System.Drawing.Point(597, 12);
+            this.pictureBoxAvatar.Location = new System.Drawing.Point(12, 12);
             this.pictureBoxAvatar.Name = "pictureBoxAvatar";
             this.pictureBoxAvatar.Size = new System.Drawing.Size(200, 200);
             this.pictureBoxAvatar.TabIndex = 6;
@@ -104,7 +104,7 @@ namespace WinForms_Auth.Views
             // 
             // btnChangeAvatar
             // 
-            this.btnChangeAvatar.Location = new System.Drawing.Point(713, 218);
+            this.btnChangeAvatar.Location = new System.Drawing.Point(71, 218);
             this.btnChangeAvatar.Name = "btnChangeAvatar";
             this.btnChangeAvatar.Size = new System.Drawing.Size(75, 23);
             this.btnChangeAvatar.TabIndex = 7;
@@ -117,7 +117,7 @@ namespace WinForms_Auth.Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(458, 291);
             this.Controls.Add(this.btnChangeAvatar);
             this.Controls.Add(this.pictureBoxAvatar);
             this.Controls.Add(this.labelRole);
@@ -127,6 +127,7 @@ namespace WinForms_Auth.Views
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Name = "FormProfile";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormProfile";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvatar)).EndInit();
             this.ResumeLayout(false);

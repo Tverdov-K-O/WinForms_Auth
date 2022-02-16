@@ -11,5 +11,9 @@ namespace WinForms_Auth.Data.Entities
         public Guid Id { get; set; }
         public string Name { get; set; }
         public virtual ICollection<Book> Books { get; set; }
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

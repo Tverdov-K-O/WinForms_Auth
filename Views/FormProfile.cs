@@ -41,19 +41,16 @@ namespace WinForms_Auth.Views
             Program._db.SaveChanges();
             this.Close();
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             //в случае отмены ничего не делаю 
             this.Close();
         }
-
         private void textBoxName_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void renderAvatar()
         {
             if (User.Avatar == null)
@@ -71,7 +68,7 @@ namespace WinForms_Auth.Views
             User.Avatar = new byte[ms.Length];
             User.Avatar = ms.GetBuffer();
         }
-            static Image ScaleImage(Image source, int width, int height)
+        public static Image ScaleImage(Image source, int width, int height)
             {
 
                 Image dest = new Bitmap(width, height);
