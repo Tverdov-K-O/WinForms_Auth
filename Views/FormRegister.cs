@@ -25,7 +25,7 @@ namespace WinForms_Auth.Views
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Retry;
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -57,11 +57,6 @@ namespace WinForms_Auth.Views
             {
                 (sender as TextBox).BackColor = Color.Green;
             }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

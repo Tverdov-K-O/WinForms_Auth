@@ -29,8 +29,10 @@ namespace WinForms_Auth.Store
         {
             get
             {
-                if (currentUser.Role.Name == "Admin") return true;
-                return false;
+                if (currentUser.Role.Name == "Admin") 
+                    return true;
+                else
+                    return false;
             }
             
         }

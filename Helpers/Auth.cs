@@ -40,9 +40,6 @@ namespace WinForms_Auth.Helpers
                 case System.Windows.Forms.DialogResult.OK:
                     TryRegister();
                     break;
-                case System.Windows.Forms.DialogResult.Retry:
-                    SingIn();
-                    break;
                 case System.Windows.Forms.DialogResult.Cancel:
                     return;
 
@@ -72,14 +69,15 @@ namespace WinForms_Auth.Helpers
                     Id = Guid.NewGuid(),
                     Name = frmRegister.textBox1.Text,
                     Email = frmRegister.textBoxEmail.Text,
-                    Password = frmRegister.textBoxPassword.Text
+                    Password = frmRegister.textBoxPassword.Text,
+                    Role = Program._db.Roles.Where(s => s.Name == "Guest").First()
                 };
                 Program._db.Add(newUser);
-                Program._db.SaveChanges();
                 Program._db.Entry(newUser).Reference("Role");
                 Program._db.Entry(newUser).Collection("Roles");
+                Program._db.SaveChanges();
                 Program.Auth.currentUser = newUser;
-                Program.Auth.isLogin = true;
+                //Program.Auth.isLogin = true;
             }catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());

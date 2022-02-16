@@ -45,17 +45,16 @@ namespace WinForms_Auth.Views
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox1.Location = new System.Drawing.Point(152, 94);
+            this.textBox1.Location = new System.Drawing.Point(107, 96);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(165, 23);
             this.textBox1.TabIndex = 0;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // labelRegistration
             // 
             this.labelRegistration.AutoSize = true;
             this.labelRegistration.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelRegistration.Location = new System.Drawing.Point(150, 30);
+            this.labelRegistration.Location = new System.Drawing.Point(107, 32);
             this.labelRegistration.Name = "labelRegistration";
             this.labelRegistration.Size = new System.Drawing.Size(122, 25);
             this.labelRegistration.TabIndex = 1;
@@ -65,7 +64,7 @@ namespace WinForms_Auth.Views
             // 
             this.labelName.AutoSize = true;
             this.labelName.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelName.Location = new System.Drawing.Point(81, 97);
+            this.labelName.Location = new System.Drawing.Point(36, 99);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(42, 20);
             this.labelName.TabIndex = 2;
@@ -75,7 +74,7 @@ namespace WinForms_Auth.Views
             // 
             this.labelEmail.AutoSize = true;
             this.labelEmail.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelEmail.Location = new System.Drawing.Point(81, 126);
+            this.labelEmail.Location = new System.Drawing.Point(36, 128);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(54, 20);
             this.labelEmail.TabIndex = 3;
@@ -85,7 +84,7 @@ namespace WinForms_Auth.Views
             // 
             this.labelPassword.AutoSize = true;
             this.labelPassword.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPassword.Location = new System.Drawing.Point(81, 166);
+            this.labelPassword.Location = new System.Drawing.Point(36, 168);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(65, 20);
             this.labelPassword.TabIndex = 4;
@@ -95,7 +94,7 @@ namespace WinForms_Auth.Views
             // 
             this.labelPassword2.AutoSize = true;
             this.labelPassword2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPassword2.Location = new System.Drawing.Point(81, 195);
+            this.labelPassword2.Location = new System.Drawing.Point(36, 197);
             this.labelPassword2.Name = "labelPassword2";
             this.labelPassword2.Size = new System.Drawing.Size(65, 20);
             this.labelPassword2.TabIndex = 5;
@@ -104,7 +103,7 @@ namespace WinForms_Auth.Views
             // textBoxEmail
             // 
             this.textBoxEmail.BackColor = System.Drawing.SystemColors.Info;
-            this.textBoxEmail.Location = new System.Drawing.Point(152, 123);
+            this.textBoxEmail.Location = new System.Drawing.Point(107, 125);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(165, 23);
             this.textBoxEmail.TabIndex = 6;
@@ -113,7 +112,7 @@ namespace WinForms_Auth.Views
             // textBoxPasswordConfurm
             // 
             this.textBoxPasswordConfurm.BackColor = System.Drawing.SystemColors.Info;
-            this.textBoxPasswordConfurm.Location = new System.Drawing.Point(152, 196);
+            this.textBoxPasswordConfurm.Location = new System.Drawing.Point(107, 198);
             this.textBoxPasswordConfurm.Name = "textBoxPasswordConfurm";
             this.textBoxPasswordConfurm.Size = new System.Drawing.Size(165, 23);
             this.textBoxPasswordConfurm.TabIndex = 7;
@@ -122,7 +121,7 @@ namespace WinForms_Auth.Views
             // textBoxPassword
             // 
             this.textBoxPassword.BackColor = System.Drawing.SystemColors.Info;
-            this.textBoxPassword.Location = new System.Drawing.Point(152, 166);
+            this.textBoxPassword.Location = new System.Drawing.Point(107, 168);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(165, 23);
             this.textBoxPassword.TabIndex = 8;
@@ -132,9 +131,9 @@ namespace WinForms_Auth.Views
             this.btnRegistration.BackColor = System.Drawing.Color.Salmon;
             this.btnRegistration.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistration.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnRegistration.Location = new System.Drawing.Point(119, 247);
+            this.btnRegistration.Location = new System.Drawing.Point(21, 258);
             this.btnRegistration.Name = "btnRegistration";
-            this.btnRegistration.Size = new System.Drawing.Size(175, 42);
+            this.btnRegistration.Size = new System.Drawing.Size(167, 42);
             this.btnRegistration.TabIndex = 9;
             this.btnRegistration.Text = "Зарегистрироваться";
             this.btnRegistration.UseVisualStyleBackColor = false;
@@ -142,12 +141,15 @@ namespace WinForms_Auth.Views
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(310, 258);
+            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnLogin.Location = new System.Drawing.Point(207, 257);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(75, 23);
+            this.btnLogin.Size = new System.Drawing.Size(110, 43);
             this.btnLogin.TabIndex = 10;
-            this.btnLogin.Text = "Login";
-            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Text = "Войти";
+            this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // FormRegister
@@ -155,7 +157,7 @@ namespace WinForms_Auth.Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(412, 315);
+            this.ClientSize = new System.Drawing.Size(336, 317);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnRegistration);
             this.Controls.Add(this.textBoxPassword);
