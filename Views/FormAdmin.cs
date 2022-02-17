@@ -18,11 +18,13 @@ namespace WinForms_Auth.Views
         Book Book = null;
         Genre selectedGenre = null;
         Book selectedBook = null;
+        Discount selectedDiscount = null;
         public FormAdmin()
         {
             InitializeComponent();
             RefrashGenres();
             RefrashBooks();
+            RefrashDiscount();
             radioBtnAdd.Checked = true;
         }
         #region Жанры
@@ -94,7 +96,8 @@ namespace WinForms_Auth.Views
                     Price = Convert.ToDouble(textBoxPrice.Text),
                     CountPage = Convert.ToInt32(textBoxCountPage.Text),
                     TomNumber = Convert.ToInt32(numericUpDownTomNumber.Value),
-                    CreatedAt = dateTimePickerCreateAt.Value
+                    DateRelease = dateTimePickerCreateAt.Value,
+                    CreatedAt = DateTime.Now.Date
                 };
                 SaveAvatar(Book);
                 Program._db.Books.Add(Book);
@@ -136,6 +139,7 @@ namespace WinForms_Auth.Views
                 textBoxCountPage.Text = selectedBook.CountPage.ToString();
                 textBoxPrice.Text = selectedBook.Price.ToString();
                 numericUpDownTomNumber.Value = selectedBook.TomNumber;
+                dateTimePickerCreateAt.Value = selectedBook.CreatedAt.Date;
                 if (selectedBook.Avatar == null)
                     pictureBoxBookAvatar.Image = null;
                 else
@@ -147,6 +151,7 @@ namespace WinForms_Auth.Views
                 radioBtnEdit.Checked = true;
             }
             RefrashBookGenres();
+            RefrashBookDiscount();
         }
         private void listBoxBooks_DoubleClick(object sender, EventArgs e)
         {
@@ -233,10 +238,84 @@ namespace WinForms_Auth.Views
             RefrashBookGenres();
         }
 
+        #endregion
 
+        #region Скидки
+        private void btnAddDiscount_Click(object sender, EventArgs e)
+        {
+            if (selectedDiscount == null)
+            {
+                Program._db.Add(new Discount
+                {
+                    Name = textBoxNameDiscount.Text,
+                    Percent = Convert.ToInt32(numericUpDownDiscount.Value),
+                    Start = dateTimePicker1.Value.Date,
+                    Finish = dateTimePicker2.Value.Date
+                });
+                Program._db.SaveChanges();
+                RefrashDiscount();
+            }
+        }
+        private void btnDelDiscount_Click(object sender, EventArgs e)
+        {
+            if (selectedDiscount != null)
+            {
+                Program._db.Discounts.Remove(selectedDiscount);
+                Program._db.SaveChanges();
+                RefrashDiscount();
+            }
+        }
+        private void RefrashDiscount()
+        {
+            listBoxDiscount.Items.Clear();
+            listBoxDiscount.Items.AddRange(Program._db.Discounts.OrderBy(s => s.Name).ToArray());
+            selectedDiscount = null;
+        }
+        #endregion
+
+        #region Книги-Скидки
+        private void RefrashBookDiscount()
+        {
+            if (selectedBook != null)
+            {
+                listBoxBookDiscount.Items.Clear();
+                listBoxBookDiscount.Items.AddRange(selectedBook.Discounts.OrderBy(s => s.Name).ToArray());
+            }
+        }
+        private void listBoxDiscount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedDiscount = listBoxDiscount.SelectedItem as Discount;
+        }
+        private void btnAddBookDiscount_Click(object sender, EventArgs e)
+        {
+            if (selectedBook == null)
+            {
+                MessageBox.Show("Выберите Книгу");
+                return;
+            }
+            else if (selectedDiscount == null)
+            {
+                MessageBox.Show("Выберите Скидку");
+                return;
+            }
+            selectedBook.Discounts.Add(selectedDiscount);
+            Program._db.SaveChanges();
+            RefrashBookDiscount();
+        }
+        private void btnDelBookDiscount_Click(object sender, EventArgs e)
+        {
+            if (listBoxBookDiscount != null && selectedBook != null)
+            {
+                Program._db.Books
+                    .Where(s => s.Id == selectedBook.Id)
+                    .First()
+                    .Discounts.Remove(listBoxBookDiscount.SelectedItem as Discount);
+            }
+            Program._db.SaveChanges();
+            RefrashBookDiscount();
+        }
         #endregion
 
 
-       
     }
 }

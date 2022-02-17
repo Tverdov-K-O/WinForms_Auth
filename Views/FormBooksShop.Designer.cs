@@ -32,6 +32,7 @@ namespace WinForms_Auth.Views
             this.components = new System.ComponentModel.Container();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.profileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.всеКнигиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.моиФаворитыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокНовинокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокПопАвторовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,7 +67,6 @@ namespace WinForms_Auth.Views
             this.добавитьВФаворитыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelSearch = new System.Windows.Forms.Label();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
-            this.всеКнигиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -100,6 +100,13 @@ namespace WinForms_Auth.Views
             this.profileToolStripMenuItem1.Text = "Профиль";
             this.profileToolStripMenuItem1.Click += new System.EventHandler(this.profileToolStripMenuItem1_Click);
             // 
+            // всеКнигиToolStripMenuItem
+            // 
+            this.всеКнигиToolStripMenuItem.Name = "всеКнигиToolStripMenuItem";
+            this.всеКнигиToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.всеКнигиToolStripMenuItem.Text = "Все книги";
+            this.всеКнигиToolStripMenuItem.Click += new System.EventHandler(this.всеКнигиToolStripMenuItem_Click);
+            // 
             // моиФаворитыToolStripMenuItem
             // 
             this.моиФаворитыToolStripMenuItem.Name = "моиФаворитыToolStripMenuItem";
@@ -112,18 +119,21 @@ namespace WinForms_Auth.Views
             this.списокНовинокToolStripMenuItem.Name = "списокНовинокToolStripMenuItem";
             this.списокНовинокToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
             this.списокНовинокToolStripMenuItem.Text = "Список Новинок";
+            this.списокНовинокToolStripMenuItem.Click += new System.EventHandler(this.списокНовинокToolStripMenuItem_Click);
             // 
             // списокПопАвторовToolStripMenuItem
             // 
             this.списокПопАвторовToolStripMenuItem.Name = "списокПопАвторовToolStripMenuItem";
             this.списокПопАвторовToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
             this.списокПопАвторовToolStripMenuItem.Text = "Список поп. Авторов";
+            this.списокПопАвторовToolStripMenuItem.Click += new System.EventHandler(this.списокПопАвторовToolStripMenuItem_Click);
             // 
             // списокПопЖанровToolStripMenuItem
             // 
             this.списокПопЖанровToolStripMenuItem.Name = "списокПопЖанровToolStripMenuItem";
             this.списокПопЖанровToolStripMenuItem.Size = new System.Drawing.Size(134, 20);
             this.списокПопЖанровToolStripMenuItem.Text = "Список поп. Жанров";
+            this.списокПопЖанровToolStripMenuItem.Click += new System.EventHandler(this.списокПопЖанровToolStripMenuItem_Click);
             // 
             // adminToolStripMenuItem
             // 
@@ -168,7 +178,7 @@ namespace WinForms_Auth.Views
             this.panelBook.Controls.Add(this.pictureBoxBook);
             this.panelBook.Location = new System.Drawing.Point(227, 57);
             this.panelBook.Name = "panelBook";
-            this.panelBook.Size = new System.Drawing.Size(348, 304);
+            this.panelBook.Size = new System.Drawing.Size(380, 304);
             this.panelBook.TabIndex = 3;
             // 
             // panel2
@@ -180,7 +190,7 @@ namespace WinForms_Auth.Views
             this.panel2.Controls.Add(this.labelPrice);
             this.panel2.Location = new System.Drawing.Point(8, 150);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(172, 82);
+            this.panel2.Size = new System.Drawing.Size(213, 82);
             this.panel2.TabIndex = 14;
             // 
             // labelTrueDiscount
@@ -255,14 +265,14 @@ namespace WinForms_Auth.Views
             this.labelTom.AutoSize = true;
             this.labelTom.Location = new System.Drawing.Point(32, 45);
             this.labelTom.Name = "labelTom";
-            this.labelTom.Size = new System.Drawing.Size(32, 15);
+            this.labelTom.Size = new System.Drawing.Size(33, 15);
             this.labelTom.TabIndex = 10;
             this.labelTom.Text = "Том:";
             // 
             // labelDateCreateFromClass
             // 
             this.labelDateCreateFromClass.AutoSize = true;
-            this.labelDateCreateFromClass.Location = new System.Drawing.Point(106, 271);
+            this.labelDateCreateFromClass.Location = new System.Drawing.Point(123, 271);
             this.labelDateCreateFromClass.Name = "labelDateCreateFromClass";
             this.labelDateCreateFromClass.Size = new System.Drawing.Size(31, 15);
             this.labelDateCreateFromClass.TabIndex = 9;
@@ -273,9 +283,9 @@ namespace WinForms_Auth.Views
             this.labelDateCreateBook.AutoSize = true;
             this.labelDateCreateBook.Location = new System.Drawing.Point(12, 271);
             this.labelDateCreateBook.Name = "labelDateCreateBook";
-            this.labelDateCreateBook.Size = new System.Drawing.Size(88, 15);
+            this.labelDateCreateBook.Size = new System.Drawing.Size(76, 15);
             this.labelDateCreateBook.TabIndex = 8;
-            this.labelDateCreateBook.Text = "Дата создания:";
+            this.labelDateCreateBook.Text = "Дата релиза:";
             // 
             // labelNamePublisher
             // 
@@ -290,7 +300,7 @@ namespace WinForms_Auth.Views
             // 
             this.labelGenres.AutoSize = true;
             this.labelGenres.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelGenres.Location = new System.Drawing.Point(248, 157);
+            this.labelGenres.Location = new System.Drawing.Point(277, 157);
             this.labelGenres.Name = "labelGenres";
             this.labelGenres.Size = new System.Drawing.Size(41, 17);
             this.labelGenres.TabIndex = 6;
@@ -301,7 +311,7 @@ namespace WinForms_Auth.Views
             this.listBoxGenres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.listBoxGenres.FormattingEnabled = true;
             this.listBoxGenres.ItemHeight = 15;
-            this.listBoxGenres.Location = new System.Drawing.Point(198, 177);
+            this.listBoxGenres.Location = new System.Drawing.Point(227, 177);
             this.listBoxGenres.Name = "listBoxGenres";
             this.listBoxGenres.Size = new System.Drawing.Size(147, 109);
             this.listBoxGenres.TabIndex = 5;
@@ -346,7 +356,7 @@ namespace WinForms_Auth.Views
             // pictureBoxBook
             // 
             this.pictureBoxBook.BackColor = System.Drawing.Color.BurlyWood;
-            this.pictureBoxBook.Location = new System.Drawing.Point(198, 0);
+            this.pictureBoxBook.Location = new System.Drawing.Point(227, 0);
             this.pictureBoxBook.Name = "pictureBoxBook";
             this.pictureBoxBook.Size = new System.Drawing.Size(150, 150);
             this.pictureBoxBook.TabIndex = 0;
@@ -377,9 +387,9 @@ namespace WinForms_Auth.Views
             this.listBoxBookSearch.BackColor = System.Drawing.Color.PeachPuff;
             this.listBoxBookSearch.FormattingEnabled = true;
             this.listBoxBookSearch.ItemHeight = 15;
-            this.listBoxBookSearch.Location = new System.Drawing.Point(588, 57);
+            this.listBoxBookSearch.Location = new System.Drawing.Point(613, 57);
             this.listBoxBookSearch.Name = "listBoxBookSearch";
-            this.listBoxBookSearch.Size = new System.Drawing.Size(200, 304);
+            this.listBoxBookSearch.Size = new System.Drawing.Size(175, 304);
             this.listBoxBookSearch.TabIndex = 6;
             // 
             // listBoxProducts
@@ -425,19 +435,12 @@ namespace WinForms_Auth.Views
             this.textBoxSearch.Size = new System.Drawing.Size(136, 23);
             this.textBoxSearch.TabIndex = 8;
             // 
-            // всеКнигиToolStripMenuItem
-            // 
-            this.всеКнигиToolStripMenuItem.Name = "всеКнигиToolStripMenuItem";
-            this.всеКнигиToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.всеКнигиToolStripMenuItem.Text = "Все книги";
-            this.всеКнигиToolStripMenuItem.Click += new System.EventHandler(this.всеКнигиToolStripMenuItem_Click);
-            // 
             // FormBooksShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(800, 372);
+            this.ClientSize = new System.Drawing.Size(795, 372);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.labelSearch);
             this.Controls.Add(this.listBoxProducts);

@@ -16,6 +16,7 @@ namespace WinForms_Auth.Data.Entities
         public int CountPage { get; set; }
         public int TomNumber { get; set; }
         public DateTime CreatedAt { get; set; }
+        public DateTime DateRelease { get; set; }
         public virtual ICollection<Genre> Genres { get; set; }
         public virtual ICollection<Discount> Discounts { get; set; }
         public virtual ICollection<User> Users { get; set; }

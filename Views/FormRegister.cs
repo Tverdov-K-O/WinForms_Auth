@@ -16,19 +16,16 @@ namespace WinForms_Auth.Views
         {
             InitializeComponent();
         }
-
         private void btnRegistration_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             this.Close();
         }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             this.Close();
         }
-
         private void textBoxEmail_Leave(object sender, EventArgs e)
         {
             MessageBox.Show("проверим мыло");
@@ -45,7 +42,6 @@ namespace WinForms_Auth.Views
             }
 
         }
-
         private void textBoxPasswordConfurm_Leave(object sender, EventArgs e)
         {
             if(textBoxPassword.Text != textBoxPasswordConfurm.Text)

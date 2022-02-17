@@ -70,6 +70,8 @@ namespace WinForms_Auth.Views
             this.textBoxGenre = new System.Windows.Forms.TextBox();
             this.listBoxGenres = new System.Windows.Forms.ListBox();
             this.groupBoxDiscount = new System.Windows.Forms.GroupBox();
+            this.textBoxNameDiscount = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnDelDiscount = new System.Windows.Forms.Button();
             this.btnAddDiscount = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -132,6 +134,7 @@ namespace WinForms_Auth.Views
             this.btnDelBookDiscount.TabIndex = 19;
             this.btnDelBookDiscount.Text = "Удалить";
             this.btnDelBookDiscount.UseVisualStyleBackColor = true;
+            this.btnDelBookDiscount.Click += new System.EventHandler(this.btnDelBookDiscount_Click);
             // 
             // btnAddBookDiscount
             // 
@@ -141,6 +144,7 @@ namespace WinForms_Auth.Views
             this.btnAddBookDiscount.TabIndex = 18;
             this.btnAddBookDiscount.Text = "Добавить";
             this.btnAddBookDiscount.UseVisualStyleBackColor = true;
+            this.btnAddBookDiscount.Click += new System.EventHandler(this.btnAddBookDiscount_Click);
             // 
             // listBoxBookDiscount
             // 
@@ -334,7 +338,7 @@ namespace WinForms_Auth.Views
             this.labelTomNumder.AutoSize = true;
             this.labelTomNumder.Location = new System.Drawing.Point(71, 274);
             this.labelTomNumder.Name = "labelTomNumder";
-            this.labelTomNumder.Size = new System.Drawing.Size(32, 15);
+            this.labelTomNumder.Size = new System.Drawing.Size(33, 15);
             this.labelTomNumder.TabIndex = 14;
             this.labelTomNumder.Text = "Том:";
             // 
@@ -501,6 +505,8 @@ namespace WinForms_Auth.Views
             // 
             // groupBoxDiscount
             // 
+            this.groupBoxDiscount.Controls.Add(this.textBoxNameDiscount);
+            this.groupBoxDiscount.Controls.Add(this.label4);
             this.groupBoxDiscount.Controls.Add(this.btnDelDiscount);
             this.groupBoxDiscount.Controls.Add(this.btnAddDiscount);
             this.groupBoxDiscount.Controls.Add(this.label3);
@@ -513,33 +519,51 @@ namespace WinForms_Auth.Views
             this.groupBoxDiscount.Controls.Add(this.listBoxDiscount);
             this.groupBoxDiscount.Location = new System.Drawing.Point(820, 338);
             this.groupBoxDiscount.Name = "groupBoxDiscount";
-            this.groupBoxDiscount.Size = new System.Drawing.Size(208, 324);
+            this.groupBoxDiscount.Size = new System.Drawing.Size(208, 341);
             this.groupBoxDiscount.TabIndex = 2;
             this.groupBoxDiscount.TabStop = false;
             this.groupBoxDiscount.Text = "Скидки";
             // 
+            // textBoxNameDiscount
+            // 
+            this.textBoxNameDiscount.Location = new System.Drawing.Point(71, 200);
+            this.textBoxNameDiscount.Name = "textBoxNameDiscount";
+            this.textBoxNameDiscount.Size = new System.Drawing.Size(100, 23);
+            this.textBoxNameDiscount.TabIndex = 29;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 204);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 15);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "Название:";
+            // 
             // btnDelDiscount
             // 
-            this.btnDelDiscount.Location = new System.Drawing.Point(112, 291);
+            this.btnDelDiscount.Location = new System.Drawing.Point(112, 313);
             this.btnDelDiscount.Name = "btnDelDiscount";
             this.btnDelDiscount.Size = new System.Drawing.Size(75, 23);
             this.btnDelDiscount.TabIndex = 27;
             this.btnDelDiscount.Text = "Удалить";
             this.btnDelDiscount.UseVisualStyleBackColor = true;
+            this.btnDelDiscount.Click += new System.EventHandler(this.btnDelDiscount_Click);
             // 
             // btnAddDiscount
             // 
-            this.btnAddDiscount.Location = new System.Drawing.Point(16, 291);
+            this.btnAddDiscount.Location = new System.Drawing.Point(16, 313);
             this.btnAddDiscount.Name = "btnAddDiscount";
             this.btnAddDiscount.Size = new System.Drawing.Size(75, 23);
             this.btnAddDiscount.TabIndex = 26;
             this.btnAddDiscount.Text = "Добавить";
             this.btnAddDiscount.UseVisualStyleBackColor = true;
+            this.btnAddDiscount.Click += new System.EventHandler(this.btnAddDiscount_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 265);
+            this.label3.Location = new System.Drawing.Point(21, 287);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 15);
             this.label3.TabIndex = 24;
@@ -547,14 +571,14 @@ namespace WinForms_Auth.Views
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(71, 262);
+            this.dateTimePicker2.Location = new System.Drawing.Point(71, 284);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(131, 23);
             this.dateTimePicker2.TabIndex = 25;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(71, 233);
+            this.dateTimePicker1.Location = new System.Drawing.Point(71, 255);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(131, 23);
             this.dateTimePicker1.TabIndex = 23;
@@ -562,7 +586,7 @@ namespace WinForms_Auth.Views
             // labelStartDiscount
             // 
             this.labelStartDiscount.AutoSize = true;
-            this.labelStartDiscount.Location = new System.Drawing.Point(6, 239);
+            this.labelStartDiscount.Location = new System.Drawing.Point(13, 261);
             this.labelStartDiscount.Name = "labelStartDiscount";
             this.labelStartDiscount.Size = new System.Drawing.Size(52, 15);
             this.labelStartDiscount.TabIndex = 22;
@@ -571,7 +595,7 @@ namespace WinForms_Auth.Views
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(127, 209);
+            this.label2.Location = new System.Drawing.Point(127, 231);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(17, 15);
             this.label2.TabIndex = 21;
@@ -580,7 +604,7 @@ namespace WinForms_Auth.Views
             // labelDiscount
             // 
             this.labelDiscount.AutoSize = true;
-            this.labelDiscount.Location = new System.Drawing.Point(16, 209);
+            this.labelDiscount.Location = new System.Drawing.Point(16, 231);
             this.labelDiscount.Name = "labelDiscount";
             this.labelDiscount.Size = new System.Drawing.Size(49, 15);
             this.labelDiscount.TabIndex = 20;
@@ -588,7 +612,7 @@ namespace WinForms_Auth.Views
             // 
             // numericUpDownDiscount
             // 
-            this.numericUpDownDiscount.Location = new System.Drawing.Point(71, 207);
+            this.numericUpDownDiscount.Location = new System.Drawing.Point(71, 229);
             this.numericUpDownDiscount.Name = "numericUpDownDiscount";
             this.numericUpDownDiscount.Size = new System.Drawing.Size(50, 23);
             this.numericUpDownDiscount.TabIndex = 19;
@@ -604,15 +628,16 @@ namespace WinForms_Auth.Views
             this.listBoxDiscount.ItemHeight = 15;
             this.listBoxDiscount.Location = new System.Drawing.Point(6, 17);
             this.listBoxDiscount.Name = "listBoxDiscount";
-            this.listBoxDiscount.Size = new System.Drawing.Size(196, 184);
+            this.listBoxDiscount.Size = new System.Drawing.Size(196, 169);
             this.listBoxDiscount.TabIndex = 0;
+            this.listBoxDiscount.SelectedIndexChanged += new System.EventHandler(this.listBoxDiscount_SelectedIndexChanged);
             // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(1026, 678);
+            this.ClientSize = new System.Drawing.Size(1049, 678);
             this.Controls.Add(this.groupBoxDiscount);
             this.Controls.Add(this.groupBoxGenre);
             this.Controls.Add(this.groupBoxBook);
@@ -687,5 +712,7 @@ namespace WinForms_Auth.Views
         private System.Windows.Forms.Button btnAddDiscount;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.TextBox textBoxNameDiscount;
+        private System.Windows.Forms.Label label4;
     }
 }

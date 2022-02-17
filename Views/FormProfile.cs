@@ -30,8 +30,6 @@ namespace WinForms_Auth.Views
                 textBoxRole.Enabled = false;
             renderAvatar();
         }
-
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;

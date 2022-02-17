@@ -53,9 +53,54 @@ namespace WinForms_Auth.Views
             var f = new FormProfile(Program.Auth.currentUser);
             f.ShowDialog();
         }
+        private void моиФаворитыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program.Auth.currentUser.Books != null)
+            {
+                listBoxProducts.Items.Clear();
+                listBoxProducts.Items.AddRange(Program.Auth.currentUser.Books.OrderBy(s => s.Name).ToArray());
+                labelAllProducts.Text = "Мои фавориты";
+            }
+        }
+        private void добавитьВФаворитыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selectedBook = listBoxProducts.SelectedItem as Book;
+            if (selectedBook != null)
+            {
+                Program.Auth.currentUser.Books.Add(selectedBook);
+                Program._db.SaveChanges();
+                MessageBox.Show($"Книга: {selectedBook.Name} добавлена в Фавориты!");
+            }
+            else
+            {
+                MessageBox.Show($"Выберите книгу!");
+            }
+        }
+        private void всеКнигиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RefrashBooks();
+            labelAllProducts.Text = "Все книги";
+        }
+        private void списокНовинокToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            labelAllProducts.Text = "Новинки";
+            listBoxProducts.Items.Clear();
+            listBoxProducts.Items.AddRange(Program._db.Books.Where(b => b.CreatedAt.Date == DateTime.Now.Date).OrderBy(s => s.Name).ToArray());
+        }
+        private void списокПопАвторовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            labelAllProducts.Text = "Книги поп. Авторов";
+            listBoxProducts.Items.Clear();
+            //var a = Program._db.Books
+        }
+        private void списокПопЖанровToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            labelAllProducts.Text = "Книги поп. Жанров";
+            listBoxProducts.Items.Clear();
+        }
         #endregion
 
-        #region Фильмы
+        #region Книги
         private void RefrashBooks()
         {
             listBoxProducts.Items.Clear();
@@ -79,7 +124,15 @@ namespace WinForms_Auth.Views
             labelFullNameAuthor.Text = selectedBook.NameAuthor;
             labelTruePrice.Text = selectedBook.Price.ToString();
             labelNamePublisher.Text = selectedBook.NamePublisher;
-            labelDateCreateFromClass.Text = selectedBook.CreatedAt.ToShortDateString();
+            labelDateCreateFromClass.Text = selectedBook.DateRelease.ToShortDateString();
+            if(selectedBook.Discounts != null)
+            {
+                var temp = selectedBook.Discounts.Where(s => s.Start.Date <= DateTime.Now.Date && s.Finish.Date >= DateTime.Now.Date);
+                if (temp.Count() != 0)
+                    labelTrueDiscount.Text = temp.First().ToString();
+                else
+                    labelTrueDiscount.Text = "Скидка 0 %";
+            }
             if (selectedBook.Avatar == null)
                 pictureBoxBook.Image = null;
             else
@@ -91,39 +144,12 @@ namespace WinForms_Auth.Views
             RefrashBookGenres();
 
         }
-
-
         #endregion
-
-        private void моиФаворитыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if(Program.Auth.currentUser.Books != null)
-            {
-                listBoxProducts.Items.Clear();
-                listBoxProducts.Items.AddRange(Program.Auth.currentUser.Books.OrderBy(s => s.Name).ToArray());
-                labelAllProducts.Text = "Мои фавориты";
-            }
-        }
-
-        private void добавитьВФаворитыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            selectedBook = listBoxProducts.SelectedItem as Book;
-            if(selectedBook != null)
-            {
-                Program.Auth.currentUser.Books.Add(selectedBook);
-                Program._db.SaveChanges();
-                MessageBox.Show($"Книга: {selectedBook.Name} добавлена в Фавориты!");
-            }
-            else
-            {
-                MessageBox.Show($"Выберите книгу!");
-            }
-        }
-
-        private void всеКнигиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RefrashBooks();
-            labelAllProducts.Text = "Все книги";
-        }
+       
     }
 }
+//SELECT COUNT(Products.Id), Category.Name FROM Users
+//	JOIN ProductUser ON ProductUser.FansId = Users.Id
+//	JOIN Products ON ProductUser.FavoritesId = Products.Id
+//	JOIN Category ON Products.CategoryId = Category.Id
+//GROUP BY Category.Name

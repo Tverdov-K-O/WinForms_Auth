@@ -94,6 +94,9 @@ namespace WinForms_Auth.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DateRelease")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -122,6 +125,9 @@ namespace WinForms_Auth.Migrations
 
                     b.Property<DateTime>("Finish")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Percent")
                         .HasColumnType("int");
@@ -164,12 +170,12 @@ namespace WinForms_Auth.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("77607aa2-53dc-4a30-9227-09264242fb65"),
+                            Id = new Guid("f15d83d1-b00e-4078-ae3f-139ac9e75513"),
                             Name = "Admin"
                         },
                         new
                         {
-                            Id = new Guid("d9f3d504-d6c9-4ec4-9395-e02ae1deeacc"),
+                            Id = new Guid("3c643b9d-a52c-4271-ace5-19a3aa578831"),
                             Name = "Guest"
                         });
                 });
@@ -195,7 +201,7 @@ namespace WinForms_Auth.Migrations
                     b.Property<Guid>("RoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasDefaultValue(new Guid("d9f3d504-d6c9-4ec4-9395-e02ae1deeacc"));
+                        .HasDefaultValue(new Guid("3c643b9d-a52c-4271-ace5-19a3aa578831"));
 
                     b.HasKey("Id");
 
@@ -206,10 +212,10 @@ namespace WinForms_Auth.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1f1e9c57-bbd4-4ea5-9251-27fc8aa849de"),
+                            Id = new Guid("296c54cd-fc6f-475b-b3db-2b6af1bb8541"),
                             Email = "admin@admin.com",
                             Name = "Admin",
-                            RoleId = new Guid("77607aa2-53dc-4a30-9227-09264242fb65")
+                            RoleId = new Guid("f15d83d1-b00e-4078-ae3f-139ac9e75513")
                         });
                 });
 
