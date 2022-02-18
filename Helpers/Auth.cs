@@ -52,13 +52,13 @@ namespace WinForms_Auth.Helpers
                 u.Email == frmLogin.textBoxLogin.Text && 
                 u.Password == frmLogin.textBoxPassword.Text)
                 .FirstOrDefault();
-            if(u == null)
+            if (u == null)
             {
                 MessageBox.Show("Ошибка в данных");
                 return;
             }
-            Program.Auth.currentUser = u;
-            Program.Auth.isLogin = true; 
+                Program.Auth.currentUser = u;
+                Program.Auth.isLogin = true;
         }
         private void TryRegister()
         {

@@ -16,18 +16,17 @@ namespace WinForms_Auth.Views
         {
             InitializeComponent();
         }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             this.Close();
         }
-
         private void btnRegister_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Retry;
             this.Close();
         }
 
+   
     }
 }

@@ -66,7 +66,6 @@ namespace WinForms_Auth.Views
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(100, 23);
             this.textBoxName.TabIndex = 2;
-            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
             // labelName
             // 
@@ -126,6 +125,8 @@ namespace WinForms_Auth.Views
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
+            this.MaximumSize = new System.Drawing.Size(474, 330);
+            this.MinimumSize = new System.Drawing.Size(474, 330);
             this.Name = "FormProfile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormProfile";

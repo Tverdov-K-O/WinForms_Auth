@@ -15,14 +15,17 @@ namespace WinForms_Auth.Views
 {
     public partial class FormBooksShop : Form
     {
-        //private AppDbContext _db = new AppDbContext();
         Book selectedBook = null;
+
+        bool searchByName = true;
+        bool searchByAuthor = false;
+        bool searchByGenre = false;
+
         #region Форма
         public FormBooksShop()
         {
             InitializeComponent();
             RefrashBooks();
-
         }
         //
         private void FormBookshop_Load(object sender, EventArgs e)
@@ -30,10 +33,9 @@ namespace WinForms_Auth.Views
             Helpers.Auth a = new Helpers.Auth();
             if (!a.Login())
             {
-                MessageBox.Show("Доступ запрещен!");
                 this.Close();
             }
-            if (Program.Auth.isAdmin)
+            else if (Program.Auth.isAdmin)
                 adminToolStripMenuItem.Enabled = true;
             else
             {
@@ -86,17 +88,104 @@ namespace WinForms_Auth.Views
             labelAllProducts.Text = "Новинки";
             listBoxProducts.Items.Clear();
             listBoxProducts.Items.AddRange(Program._db.Books.Where(b => b.CreatedAt.Date == DateTime.Now.Date).OrderBy(s => s.Name).ToArray());
+            if(listBoxProducts.Items.Count == 0)
+            {
+                MessageBox.Show("Сегодня новинок нет :(");
+            }
         }
-        private void списокПопАвторовToolStripMenuItem_Click(object sender, EventArgs e)
+        private void поискПоНазваниюToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            labelAllProducts.Text = "Книги поп. Авторов";
-            listBoxProducts.Items.Clear();
-            //var a = Program._db.Books
+            searchByName = true;
+            searchByGenre = false;
+            searchByAuthor = false;
+            labelSearch2.Text = "Названию";
         }
-        private void списокПопЖанровToolStripMenuItem_Click(object sender, EventArgs e)
+        private void поискПоАвторуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            labelAllProducts.Text = "Книги поп. Жанров";
-            listBoxProducts.Items.Clear();
+            searchByAuthor = true;
+            searchByGenre = false;
+            searchByName = false;
+            labelSearch2.Text = "Автору";
+            searchByAuthorsOrGenres();
+        }
+        private void поискПоЖарнуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            searchByGenre = true;
+            searchByName = false;
+            searchByAuthor = false;
+            labelSearch2.Text = "Жанру";
+            searchByAuthorsOrGenres();
+        }
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (searchByName == true)
+            {
+                listBoxBookSearch.Items.Clear();
+                listBoxBookSearch.Items.AddRange(Program._db.Books.Where(b => b.Name.Contains(textBoxSearch.Text)).ToArray());
+            }
+            if (searchByAuthor)
+            {
+                listBoxBookSearch.Items.Clear();
+                listBoxBookSearch.Items.AddRange(Program._db.Books.Where(b => b.NameAuthor.Contains(textBoxSearch.Text)).ToArray());
+            }
+            if (searchByGenre)
+            {
+                listBoxBookSearch.Items.Clear();
+                var SearchGenre = Program._db.Genres.Where(g => g.Name.Contains(textBoxSearch.Text)).FirstOrDefault(); 
+                listBoxBookSearch.Items.AddRange(Program._db.Books.Where(b=>b.Genres.Contains(SearchGenre)).ToArray());
+            }
+        }
+        private void labelSearch_MouseEnter(object sender, EventArgs e)
+        {
+            labelSearch.ContextMenuStrip.Show(new Point(MousePosition.X, MousePosition.Y));
+        }
+        private void FormBooksShop_MouseEnter(object sender, EventArgs e)
+        {
+            labelSelectSearch.Visible = true;
+        }
+        private void FormBooksShop_MouseLeave(object sender, EventArgs e)
+        {
+            labelSelectSearch.Visible = false;
+        }
+        private void listBoxBookSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedBook = listBoxBookSearch.SelectedItem as Book;
+            RefrashSelectBook();
+        }
+        private void searchByAuthorsOrGenres()
+        {
+            contextMenuStripSearchByAuthorGenres.Items.Clear();
+            if (searchByGenre)
+            {
+                foreach (var item in Program._db.Genres)
+                    contextMenuStripSearchByAuthorGenres.Items.Add(new ToolStripMenuItem { Name = item.Name, Text = item.Name });
+
+                contextMenuStripSearchByAuthorGenres.Show(MousePosition.X, MousePosition.Y);
+
+                foreach (var item in contextMenuStripSearchByAuthorGenres.Items)
+                {
+                    var temp = (item as ToolStripMenuItem);
+                    temp.Click += Temp_Click;
+                }
+            }
+            else if (searchByAuthor)
+            {
+                foreach (var item in Program._db.Books)
+                    contextMenuStripSearchByAuthorGenres.Items.Add(new ToolStripMenuItem { Name = item.NameAuthor, Text = item.NameAuthor });
+
+                contextMenuStripSearchByAuthorGenres.Show(MousePosition.X, MousePosition.Y);
+
+                foreach (var item in contextMenuStripSearchByAuthorGenres.Items)
+                {
+                    var temp = (item as ToolStripMenuItem);
+                    temp.Click += Temp_Click;
+                }
+            }
+        }
+        private void Temp_Click(object sender, EventArgs e)
+        {
+            var temp = sender as ToolStripMenuItem;
+            textBoxSearch.Text = temp.Name;
         }
         #endregion
 
@@ -115,41 +204,43 @@ namespace WinForms_Auth.Views
                 listBoxGenres.Items.AddRange(selectedBook.Genres.ToArray());
             }
         }
+        private void RefrashSelectBook()
+        {
+            if (selectedBook != null)
+            {
+                labelNameBook.Text = selectedBook.ToString();
+                labelTomNumber.Text = selectedBook.TomNumber.ToString();
+                labelCountPage2.Text = selectedBook.CountPage.ToString();
+                labelFullNameAuthor.Text = selectedBook.NameAuthor;
+                labelTruePrice.Text = selectedBook.Price.ToString();
+                labelNamePublisher.Text = selectedBook.NamePublisher;
+                labelDateCreateFromClass.Text = selectedBook.DateRelease.ToShortDateString();
+                if (selectedBook.Discounts != null)
+                {
+                    var temp = selectedBook.Discounts.Where(s => s.Start.Date <= DateTime.Now.Date && s.Finish.Date >= DateTime.Now.Date);
+                    if (temp.Count() != 0)
+                        labelTrueDiscount.Text = temp.First().ToString();
+                    else
+                        labelTrueDiscount.Text = "Скидка 0 %";
+                }
+                if (selectedBook.Avatar == null)
+                    pictureBoxBook.Image = null;
+                else
+                {
+                    MemoryStream ms = new MemoryStream(selectedBook.Avatar);
+                    Image image = Image.FromStream(ms);
+                    pictureBoxBook.Image = image;
+                }
+                RefrashBookGenres();
+            }
+        }
         private void listBoxProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedBook = listBoxProducts.SelectedItem as Book;
-            labelNameBook.Text = selectedBook.ToString();
-            labelTomNumber.Text = selectedBook.TomNumber.ToString();
-            labelCountPage2.Text = selectedBook.CountPage.ToString();
-            labelFullNameAuthor.Text = selectedBook.NameAuthor;
-            labelTruePrice.Text = selectedBook.Price.ToString();
-            labelNamePublisher.Text = selectedBook.NamePublisher;
-            labelDateCreateFromClass.Text = selectedBook.DateRelease.ToShortDateString();
-            if(selectedBook.Discounts != null)
-            {
-                var temp = selectedBook.Discounts.Where(s => s.Start.Date <= DateTime.Now.Date && s.Finish.Date >= DateTime.Now.Date);
-                if (temp.Count() != 0)
-                    labelTrueDiscount.Text = temp.First().ToString();
-                else
-                    labelTrueDiscount.Text = "Скидка 0 %";
-            }
-            if (selectedBook.Avatar == null)
-                pictureBoxBook.Image = null;
-            else
-            {
-                MemoryStream ms = new MemoryStream(selectedBook.Avatar);
-                Image image = Image.FromStream(ms);
-                pictureBoxBook.Image = image;
-            }
-            RefrashBookGenres();
-
+            RefrashSelectBook();
         }
         #endregion
-       
+
+   
     }
 }
-//SELECT COUNT(Products.Id), Category.Name FROM Users
-//	JOIN ProductUser ON ProductUser.FansId = Users.Id
-//	JOIN Products ON ProductUser.FavoritesId = Products.Id
-//	JOIN Category ON Products.CategoryId = Category.Id
-//GROUP BY Category.Name

@@ -169,6 +169,8 @@ namespace WinForms_Auth.Views
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.labelRegistration);
             this.Controls.Add(this.textBox1);
+            this.MaximumSize = new System.Drawing.Size(352, 356);
+            this.MinimumSize = new System.Drawing.Size(352, 356);
             this.Name = "FormRegister";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormRegister";

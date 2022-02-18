@@ -265,6 +265,21 @@ namespace WinForms_Auth.Views
                 RefrashDiscount();
             }
         }
+        private void listBoxDiscount_DoubleClick(object sender, EventArgs e)
+        {
+            if (selectedDiscount != null)
+            {
+                MessageBox.Show($"Акция: {selectedDiscount.Name}\nНачало акции: {selectedDiscount.Start.Date.ToShortDateString()}\nКонец акции: {selectedDiscount.Finish.Date.ToShortDateString()}");
+            }
+        }
+        private void listBoxDiscount_MouseEnter(object sender, EventArgs e)
+        {
+            labelDoubleClickSelectDiscount.Visible = true;
+        }
+        private void listBoxDiscount_MouseLeave(object sender, EventArgs e)
+        {
+            labelDoubleClickSelectDiscount.Visible = false;
+        }
         private void RefrashDiscount()
         {
             listBoxDiscount.Items.Clear();
@@ -314,8 +329,9 @@ namespace WinForms_Auth.Views
             Program._db.SaveChanges();
             RefrashBookDiscount();
         }
+
         #endregion
 
-
+        
     }
 }

@@ -45,10 +45,6 @@ namespace WinForms_Auth.Views
             //в случае отмены ничего не делаю 
             this.Close();
         }
-        private void textBoxName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void renderAvatar()
         {
             if (User.Avatar == null)

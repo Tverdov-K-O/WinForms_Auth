@@ -29,6 +29,7 @@ namespace WinForms_Auth.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBoxBook = new System.Windows.Forms.GroupBox();
             this.labelBook = new System.Windows.Forms.Label();
             this.btnDelBookDiscount = new System.Windows.Forms.Button();
@@ -82,6 +83,8 @@ namespace WinForms_Auth.Views
             this.labelDiscount = new System.Windows.Forms.Label();
             this.numericUpDownDiscount = new System.Windows.Forms.NumericUpDown();
             this.listBoxDiscount = new System.Windows.Forms.ListBox();
+            this.toolTipDiscount = new System.Windows.Forms.ToolTip(this.components);
+            this.labelDoubleClickSelectDiscount = new System.Windows.Forms.Label();
             this.groupBoxBook.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTomNumber)).BeginInit();
@@ -338,7 +341,7 @@ namespace WinForms_Auth.Views
             this.labelTomNumder.AutoSize = true;
             this.labelTomNumder.Location = new System.Drawing.Point(71, 274);
             this.labelTomNumder.Name = "labelTomNumder";
-            this.labelTomNumder.Size = new System.Drawing.Size(33, 15);
+            this.labelTomNumder.Size = new System.Drawing.Size(32, 15);
             this.labelTomNumder.TabIndex = 14;
             this.labelTomNumder.Text = "Том:";
             // 
@@ -523,6 +526,7 @@ namespace WinForms_Auth.Views
             this.groupBoxDiscount.TabIndex = 2;
             this.groupBoxDiscount.TabStop = false;
             this.groupBoxDiscount.Text = "Скидки";
+            this.toolTipDiscount.SetToolTip(this.groupBoxDiscount, "Посмотреть период акции двойной клик!");
             // 
             // textBoxNameDiscount
             // 
@@ -630,17 +634,46 @@ namespace WinForms_Auth.Views
             this.listBoxDiscount.Name = "listBoxDiscount";
             this.listBoxDiscount.Size = new System.Drawing.Size(196, 169);
             this.listBoxDiscount.TabIndex = 0;
+            this.toolTipDiscount.SetToolTip(this.listBoxDiscount, "Посмотреть период акции двойной клик!");
             this.listBoxDiscount.SelectedIndexChanged += new System.EventHandler(this.listBoxDiscount_SelectedIndexChanged);
+            this.listBoxDiscount.DoubleClick += new System.EventHandler(this.listBoxDiscount_DoubleClick);
+            this.listBoxDiscount.MouseEnter += new System.EventHandler(this.listBoxDiscount_MouseEnter);
+            this.listBoxDiscount.MouseLeave += new System.EventHandler(this.listBoxDiscount_MouseLeave);
+            // 
+            // toolTipDiscount
+            // 
+            this.toolTipDiscount.AutomaticDelay = 0;
+            this.toolTipDiscount.AutoPopDelay = 5000;
+            this.toolTipDiscount.InitialDelay = 0;
+            this.toolTipDiscount.ReshowDelay = 0;
+            this.toolTipDiscount.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipDiscount.UseAnimation = false;
+            this.toolTipDiscount.UseFading = false;
+            // 
+            // labelDoubleClickSelectDiscount
+            // 
+            this.labelDoubleClickSelectDiscount.AutoSize = true;
+            this.labelDoubleClickSelectDiscount.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelDoubleClickSelectDiscount.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.labelDoubleClickSelectDiscount.Location = new System.Drawing.Point(339, 542);
+            this.labelDoubleClickSelectDiscount.Name = "labelDoubleClickSelectDiscount";
+            this.labelDoubleClickSelectDiscount.Size = new System.Drawing.Size(475, 20);
+            this.labelDoubleClickSelectDiscount.TabIndex = 3;
+            this.labelDoubleClickSelectDiscount.Text = "Посмотреть период акции двойной клик по выбраной Акции---->";
+            this.labelDoubleClickSelectDiscount.Visible = false;
             // 
             // FormAdmin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1049, 678);
+            this.Controls.Add(this.labelDoubleClickSelectDiscount);
             this.Controls.Add(this.groupBoxDiscount);
             this.Controls.Add(this.groupBoxGenre);
             this.Controls.Add(this.groupBoxBook);
+            this.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.MaximumSize = new System.Drawing.Size(1065, 717);
+            this.MinimumSize = new System.Drawing.Size(1065, 717);
             this.Name = "FormAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAdmin";
@@ -656,6 +689,7 @@ namespace WinForms_Auth.Views
             this.groupBoxDiscount.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDiscount)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -714,5 +748,7 @@ namespace WinForms_Auth.Views
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.TextBox textBoxNameDiscount;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolTip toolTipDiscount;
+        private System.Windows.Forms.Label labelDoubleClickSelectDiscount;
     }
 }
