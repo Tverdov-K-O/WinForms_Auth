@@ -39,6 +39,7 @@
 
   <ItemGroup>
     <Folder Include="PhotoUsers\" />
+    <Folder Include="README\" />
   </ItemGroup>
 
 </Project>
